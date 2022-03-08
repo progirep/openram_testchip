@@ -47,7 +47,11 @@ set ::env(CLOCK_PERIOD) "10"
 ## Internal Macros
 ### Macro PDN Connections
 set ::env(FP_PDN_MACRO_HOOKS) "\
-	mprj vccd1 vssd1"
+	prj vccd1 vssd1 \
+	SRAM1 vccd1 vssd1 \	
+	SRAM12 vccd1 vssd1"
+
+
 
 ### Macro Placement
 set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
@@ -55,19 +59,20 @@ set ::env(MACRO_PLACEMENT_CFG) $script_dir/macro.cfg
 ### Black-box verilog and views
 set ::env(VERILOG_FILES_BLACKBOX) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
+	$script_dir/../../verilog/rtl/user_project.v \
 	$script_dir/../../verilog/rtl/monitor.v \
-        $::env(PDK_ROOT)/sky130B/libs.ref/sky130_sram_macros/verilog/sky130_sram_2kbyte_1rw1r_32x512_8.v \
-        $::env(PDK_ROOT)/sky130B/libs.ref/sky130_sram_macros/verilog/sky130_sram_1kbyte_1rw1r_32x256_8.v"
+        $::env(PDK_ROOT)/sky130A/libs.ref/sky130_sram_macros/verilog/sky130_sram_2kbyte_1rw1r_32x512_8.v \
+        $::env(PDK_ROOT)/sky130A/libs.ref/sky130_sram_macros/verilog/sky130_sram_1kbyte_1rw1r_32x256_8.v"
 
 set ::env(EXTRA_LEFS) "\
-	$script_dir/../../lef/monitor.lef \
-        $::env(PDK_ROOT)/sky130B/libs.ref/sky130_sram_macros/lef/sky130_sram_2kbyte_1rw1r_32x512_8.lef \ 
-        $::env(PDK_ROOT)/sky130B/libs.ref/sky130_sram_macros/lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef"
+	$script_dir/../../lef/user_project.lef \
+        $::env(PDK_ROOT)/sky130A/libs.ref/sky130_sram_macros/lef/sky130_sram_2kbyte_1rw1r_32x512_8.lef \ 
+        $::env(PDK_ROOT)/sky130A/libs.ref/sky130_sram_macros/lef/sky130_sram_1kbyte_1rw1r_32x256_8.lef"
 
 set ::env(EXTRA_GDS_FILES) "\
-	$script_dir/../../gds/monitor.gds \
-        $::env(PDK_ROOT)/sky130B/libs.ref/sky130_sram_macros/gds/sky130_sram_2kbyte_1rw1r_32x512_8.gds \
-        $::env(PDK_ROOT)/sky130B/libs.ref/sky130_sram_macros/gds/sky130_sram_1kbyte_1rw1r_32x256_8.gds"
+	$script_dir/../../gds/user_project.gds \
+        $::env(PDK_ROOT)/sky130A/libs.ref/sky130_sram_macros/gds/sky130_sram_2kbyte_1rw1r_32x512_8.gds \
+        $::env(PDK_ROOT)/sky130A/libs.ref/sky130_sram_macros/gds/sky130_sram_1kbyte_1rw1r_32x256_8.gds"
 
 
 # set ::env(GLB_RT_MAXLAYER) 5
@@ -86,7 +91,36 @@ set ::env(PL_RESIZER_TIMING_OPTIMIZATIONS) 0
 set ::env(PL_RESIZER_BUFFER_INPUT_PORTS) 0
 set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
 
-set ::env(FP_PDN_ENABLE_RAILS) 0
+set ::env(MACRO_PLACE_HALO) 3
+set ::env(MACRO_PLACE_CHANNEL) "100 100"
+
+set ::env(NO_GLB_RT_OBS) "li1 1600.00 1500.00 2280.0 1914.0,  \
+	               		met1 1600.00 1500.00 2280.0 1914.0, \
+	               		met2 1600.00 1500.00 2280.0 1914.0, \
+	              		met3 1600.00 1500.00 2280.0 1914.0, \
+	              		met4 1600.00 1500.00 2280.0 1914.0, \
+		       			met5 0 0 2920 3520"
+
+
+set ::env(GLB_RT_ALLOW_CONGESTION) "1"
+
+#Reduction in the routing capacity of the edges between the cells in the global routing graph. Values range from 0 to 1.
+#1 = most reduction, 0 = least reduction 
+set ::env(GLB_RT_LAYER_ADJUSTMENTS) 0.8,0.8,0.7,0,0,0
+
+# Not too many iterations
+set ::env(DRT_OPT_ITERS) 10
+
+# per layer adjustment
+# 0 -> 1: 1 means don't use the layer                                                        
+# l2 is met1                                                                                 
+
+# set ::env(FP_PDN_ENABLE_RAILS) 0
+
+set ::env(SYNTH_USE_PG_PINS_DEFINES) "USE_POWER_PINS"
+
+set ::env(VDD_NETS) "vccd1 vccd2 vdda1 vdda2"
+set ::env(GND_NETS) "vssd1 vssd2 vssa1 vssa2"
 
 set ::env(DIODE_INSERTION_STRATEGY) 0
 set ::env(FILL_INSERTION) 0

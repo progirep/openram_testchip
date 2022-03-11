@@ -46,10 +46,10 @@ set ::env(CLOCK_PERIOD) "10"
 
 ## Internal Macros
 ### Macro PDN Connections
-set ::env(FP_PDN_MACRO_HOOKS) "\
-	prj vccd1 vssd1 \
-	SRAM1 vccd1 vssd1 \	
-	SRAM12 vccd1 vssd1"
+# set ::env(FP_PDN_MACRO_HOOKS) "\
+#	prj vccd1 vssd1 \
+#	SRAM1 vccd1 vssd1 \	
+#	SRAM12 vccd1 vssd1"
 
 
 
@@ -91,36 +91,40 @@ set ::env(PL_RESIZER_TIMING_OPTIMIZATIONS) 0
 set ::env(PL_RESIZER_BUFFER_INPUT_PORTS) 0
 set ::env(PL_RESIZER_BUFFER_OUTPUT_PORTS) 0
 
-set ::env(MACRO_PLACE_HALO) 3
-set ::env(MACRO_PLACE_CHANNEL) "100 100"
-
-set ::env(NO_GLB_RT_OBS) "li1 1600.00 1500.00 2280.0 1914.0,  \
-	               		met1 1600.00 1500.00 2280.0 1914.0, \
-	               		met2 1600.00 1500.00 2280.0 1914.0, \
-	              		met3 1600.00 1500.00 2280.0 1914.0, \
-	              		met4 1600.00 1500.00 2280.0 1914.0, \
-		       			met5 0 0 2920 3520"
+# set ::env(MACRO_PLACE_HALO) 4
+# set ::env(MACRO_PLACE_CHANNEL) "100 100"
 
 
-set ::env(GLB_RT_ALLOW_CONGESTION) "1"
+# set ::env(GLB_RT_OBS) "li1 1600.00 1850.00 2240.0 2264.0,  \
+#	               		met1 1600.00 1850.00 2240.0 2264.0, \
+#	               		met2 1600.00 1850.00 2240.0 2264.0, \
+#	              		met3 1600.00 1850.00 2240.0 2264.0, \
+#	              		met4 1600.00 1850.00 2240.0 2264.0, \
+#		       			met5 0 0 2920 3520 "
+
+
+# set ::env(GLB_RT_ALLOW_CONGESTION) "1"
 
 #Reduction in the routing capacity of the edges between the cells in the global routing graph. Values range from 0 to 1.
 #1 = most reduction, 0 = least reduction 
 set ::env(GLB_RT_LAYER_ADJUSTMENTS) 0.8,0.8,0.7,0,0,0
 
 # Not too many iterations
-set ::env(DRT_OPT_ITERS) 10
+set ::env(DRT_OPT_ITERS) 30
 
 # per layer adjustment
 # 0 -> 1: 1 means don't use the layer                                                        
 # l2 is met1                                                                                 
 
-# set ::env(FP_PDN_ENABLE_RAILS) 0
+set ::env(FP_PDN_ENABLE_RAILS) 0
 
 set ::env(SYNTH_USE_PG_PINS_DEFINES) "USE_POWER_PINS"
 
-set ::env(VDD_NETS) "vccd1 vccd2 vdda1 vdda2"
-set ::env(GND_NETS) "vssd1 vssd2 vssa1 vssa2"
+# set ::env(VDD_NETS) "vccd1 vccd2 vdda1 vdda2"
+# set ::env(GND_NETS) "vssd1 vssd2 vssa1 vssa2"
+
+# 16 GB of RAM aren't enough for magic DRC. KLayout DRC only works with some changes to scripts
+set ::env(RUN_MAGIC_DRC) 0
 
 set ::env(DIODE_INSERTION_STRATEGY) 0
 set ::env(FILL_INSERTION) 0

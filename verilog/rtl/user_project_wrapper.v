@@ -137,20 +137,20 @@ user_project prj (
     wbs_dat_o,
 
     // Logic Analyzer Signals
-    la_data_in,
-    la_data_out,
-    la_oenb,
+    //la_data_in,
+    //la_data_out,
+    //la_oenb,
 
     // IOs
-    io_in,
-    io_out,
-    io_oeb,
+    //io_in,
+    //io_out,
+    //io_oeb,
 
     // Analog (direct connection to GPIO pad---use with caution)
     // Note that analog I/O is not available on the 7 lowest-numbered
     // GPIO pads, and so the analog_io indexing is offset from the
     // GPIO indexing by 7 (also upper 2 GPIOs do not have analog_io).
-    analog_io,
+    //analog_io,
 
     // Independent clock (on independent integer divider)
     user_clock2,

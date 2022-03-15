@@ -153,7 +153,7 @@ user_project prj (
     //analog_io,
 
     // Independent clock (on independent integer divider)
-    user_clock2,
+    //user_clock2,
 
     // User maskable interrupt signals
     user_irq,

@@ -82,6 +82,10 @@ set ::env(RT_MAX_LAYER) {met4}
 # any issue with pdn connections will be flagged with LVS so it is not a critical check.
 set ::env(FP_PDN_CHECK_NODES) 0
 
+# PDN - We need enough free room between the macros
+set ::env(FP_PDN_VERTICAL_HALO) 50
+set ::env(FP_PDN_HORIZONTAL_HALO) 50
+
 # The following is because there are no std cells in the example wrapper project.
 set ::env(SYNTH_TOP_LEVEL) 1
 set ::env(PL_RANDOM_GLB_PLACEMENT) 1

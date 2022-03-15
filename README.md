@@ -155,7 +155,7 @@ All bit masks, starting addresses for the lookup tables, and lookup table entry 
 
 The monitoring component has been designed under the assumption that it is not programmed directly, but rather the user uses a compiler to generate the content of the SRAMs of the component.
 
-The compiler can be found [https://github.com/progirep/monitor_compiler_for_caraval_monitor on Github] and is licensed under GPLv3. It takes specification files that are already in the form of Boolean formulas to be computed as input:
+The compiler can be found [on Github](https://github.com/progirep/monitor_compiler_for_caraval_monitor) and is licensed under GPLv3. It takes specification files that are already in the form of Boolean formulas to be computed as input:
 
 ```
 STATES a b c
@@ -266,7 +266,7 @@ The SRAMs can be both written to and read from, so that parts of the SRAMs not u
 
 # Ideas incorporated and submodules used
 
-The monitoring component uses the [BEXTDEP https://github.com/cliffordwolf/bextdep] Verilog modules for bit extraction by Claire Wolf, licensed under the ISC License.
+The monitoring component uses the [BEXTDEP](https://github.com/cliffordwolf/bextdep Verilog modules for bit extraction by Claire Wolf, licensed under the ISC License.
 
 All SRAM output is read by a buffer in the monitoring component, which is an aspect whose implementation has been taken from the OpenSRAM test project by the following authors:
 

@@ -266,7 +266,7 @@ The SRAMs can be both written to and read from, so that parts of the SRAMs not u
 
 # Ideas incorporated and submodules used
 
-The monitoring component uses the [BEXTDEP](https://github.com/cliffordwolf/bextdep Verilog modules for bit extraction by Claire Wolf, licensed under the ISC License.
+The monitoring component uses the [BEXTDEP](https://github.com/cliffordwolf/bextdep) Verilog modules for bit extraction by Claire Wolf, licensed under the ISC License.
 
 All SRAM output is read by a buffer in the monitoring component, which is an aspect whose implementation has been taken from the OpenSRAM test project by the following authors:
 

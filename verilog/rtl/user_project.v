@@ -146,7 +146,7 @@ module user_project #(
  //  wire rstn = gpio_resetn & ~la_reset;
    
    monitor CONTROL_LOGIC(
-				  .resetn(rstn),
+				  .resetn(wb_rst_i),
 				  .clk(clk),
 				  //.global_csb(global_csb),
 				  //.gpio_scan(gpio_scan),
